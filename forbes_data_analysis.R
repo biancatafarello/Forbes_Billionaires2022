@@ -1,0 +1,5 @@
+library("dplyr")
+setwd("C:/Users/Kazuhiro/OneDrive/Documentos/Projeto R")
+data_forbes <- read.csv("C:/Users/Kazuhiro/OneDrive/Documentos/Projeto R/forbes_billionaires_2022.csv")
+data_forbes <- as_tibble(data_forbes)
+str(data_forbes)
