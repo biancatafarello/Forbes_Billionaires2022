@@ -1,0 +1,35 @@
+---
+title: "Como se tornar um bilionário"
+output: html_document
+date: '2022-07-04'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+#Limpeza dos dados
+setwd("../archive/")
+lista_forbes <- read.csv("forbes_2022_billionaires.csv")
+lista_forbes <- subset(lista_forbes, select = c(rank,personName,age,finalWorth,category,country,selfMade,gender))
+lista_forbes <- as_tibble(lista_forbes) 
+```
+
+```{r}
+#Criação do subset self-made
+herdeiros <- lista_forbes %>% filter(selfMade == "False")
+selfmade <- lista_forbes %>% filter(selfMade == "True")
+proporcao_selfmade <- nrow(selfmade)/nrow(lista_forbes)
+proporcao_herdeiros <- nrow(herdeiros)/nrow(lista_forbes)
+#gráfico selfmade
+slices <- c(proporcao_selfmade,proporcao_herdeiros)
+piepercent<- round(100*slices/sum(slices), 1)
+g1 <- pie(x = slices, labels = piepercent, main="Selfmade x Herdeiros",col = rainbow(length(slices)))
+legend("topright",c("Selfmade","Herdeiro"),cex = 0.8,fill = rainbow(length(slices)))
+```
+```{r}
+
+```
+
+
