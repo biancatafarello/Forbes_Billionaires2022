@@ -38,6 +38,11 @@ cat_table <- table(lista_forbes$category)
 freq <- cat_table/sum(cat_table)
 sort(freq, decreasing = TRUE)
 pie(cat_table)
+############## RASCUNHO ##############
+slices <- c(cat_table)
+piepercent<- round(100*slices/sum(slices), 1)
+g1 <- pie(x = slices, labels = piepercent, main="Proporção por categoria",col = rainbow(length(slices)))
+legend("topright",c(cat_table),cex = 0.8,fill = rainbow(length(slices)))
 ```
 
 
