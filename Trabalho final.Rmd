@@ -9,6 +9,9 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r}
+#Pacotes
+library("dplyr")
+library("tidyverse")
 #Limpeza dos dados
 setwd("../archive/")
 lista_forbes <- read.csv("forbes_2022_billionaires.csv")
@@ -28,8 +31,13 @@ piepercent<- round(100*slices/sum(slices), 1)
 g1 <- pie(x = slices, labels = piepercent, main="Selfmade x Herdeiros",col = rainbow(length(slices)))
 legend("topright",c("Selfmade","Herdeiro"),cex = 0.8,fill = rainbow(length(slices)))
 ```
-```{r}
 
+```{r}
+#Proporção entre categorias
+cat_table <- table(lista_forbes$category)
+freq <- cat_table/sum(cat_table)
+sort(freq, decreasing = TRUE)
+pie(cat_table)
 ```
 
 
