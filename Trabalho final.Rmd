@@ -9,15 +9,16 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r}
-#Pacotes
-library("dplyr")
-library("tidyverse")
 #Limpeza dos dados
 setwd("../archive/")
 lista_forbes <- read.csv("forbes_2022_billionaires.csv")
 lista_forbes <- subset(lista_forbes, select = c(rank,personName,age,finalWorth,category,country,selfMade,gender))
+library(dplyr)
 lista_forbes <- as_tibble(lista_forbes) 
 ```
+#Introdução
+##Separamos tópicos de interesse usando as seguintes variáveis:
+###
 
 ```{r}
 #Criação do subset self-made
@@ -26,23 +27,59 @@ selfmade <- lista_forbes %>% filter(selfMade == "True")
 proporcao_selfmade <- nrow(selfmade)/nrow(lista_forbes)
 proporcao_herdeiros <- nrow(herdeiros)/nrow(lista_forbes)
 #gráfico selfmade
-slices <- c(proporcao_selfmade,proporcao_herdeiros)
-piepercent<- round(100*slices/sum(slices), 1)
-g1 <- pie(x = slices, labels = piepercent, main="Selfmade x Herdeiros",col = rainbow(length(slices)))
-legend("topright",c("Selfmade","Herdeiro"),cex = 0.8,fill = rainbow(length(slices)))
+library(ggplot2)
+slcs1 <- c(proporcao_selfmade,proporcao_herdeiros)
+ppt1<- round(100*slcs1/sum(slcs1), 1)
+g1 <- pie(x = slcs1, labels = ppt1, main="Selfmade x Herdeiros",col = rainbow(length(slcs1)))
+legend("topright",c("Selfmade","Herdeiro"),cex = 0.8,fill = rainbow(length(slcs1)))
+``` 
+
+```{r}
+homens <- lista_forbes %>% filter(gender == "M")
+mulheres <- lista_forbes %>% filter(gender == "F")
+p_ht <- nrow(homens)/nrow(lista_forbes)
+p_mt <- nrow(mulheres)/nrow(lista_forbes)
+slcs2 <- c(p_ht,p_mt)
+ppt2<- round(100*slcs2/sum(slcs2), 1)
+g2 <- pie(x = slcs2, labels = ppt2, main="Homens bilionários x Mulheres bilionárias",col = rainbow(length(slcs2)))
+legend("topright",c("Homens","Mulheres"),cex = 0.8,fill = rainbow(length(slcs2)))
+``` 
+
+```{r}
+h_herdeiros <- herdeiros %>% filter(gender == "M")
+m_herdeiras <- herdeiros %>% filter(gender == "F")
+proporcao_hh <- nrow(h_herdeiros)/nrow(herdeiros)
+proporcao_mh <- nrow(m_herdeiras)/nrow(herdeiros)
+slcs3 <- c(proporcao_hh,proporcao_mh)
+ppt3<- round(100*slcs3/sum(slcs3), 1)
+g3 <- pie(x = slcs3, labels = ppt3, main="Homens herdeiros x Mulheres herdeiras",col = rainbow(length(slcs3)))
+legend("topright",c("Homens","Mulheres"),cex = 0.8,fill = rainbow(length(slcs3)))
 ```
 
 ```{r}
-#Proporção entre categorias
-cat_table <- table(lista_forbes$category)
-freq <- cat_table/sum(cat_table)
-sort(freq, decreasing = TRUE)
-pie(cat_table)
-############## RASCUNHO ##############
-slices <- c(cat_table)
-piepercent<- round(100*slices/sum(slices), 1)
-g1 <- pie(x = slices, labels = piepercent, main="Proporção por categoria",col = rainbow(length(slices)))
-legend("topright",c(cat_table),cex = 0.8,fill = rainbow(length(slices)))
+h_selfmade<- selfmade %>% filter(gender == "M")
+m_selfmade <- selfmade %>% filter(gender == "F")
+proporcao_hs <- nrow(h_selfmade)/nrow(selfmade)
+proporcao_ms <- nrow(m_selfmade)/nrow(selfmade)
+slcs4 <- c(proporcao_hs,proporcao_ms)
+ppt4<- round(100*slcs4/sum(slcs4), 1)
+g4 <- pie(x = slcs4, labels = ppt4, main="Homens Selfmade x Mulheres Selfmade",col = rainbow(length(slcs4)))
+legend("topright",c("Homens","Mulheres"),cex = 0.8,fill = rainbow(length(slcs4)))
+
 ```
+
+```{r}
+media_idade <- lista_forbes$age %>% mean(na.rm=TRUE)
+media_h <- homens$age %>% mean(na.rm=TRUE)
+media_m <- mulheres$age %>% mean(na.rm=TRUE)
+media_hr <- herdeiros$age %>% mean(na.rm=TRUE)
+media_sm <- selfmade$age %>% mean(na.rm=TRUE)
+medias <- c(media_idade,media_h,media_m,media_hr,media_sm)
+hist(x = lista_forbes$age, breaks = 20,main = "Qual é a idade dos  bilionários?",xlab = "Idade",ylab = "Frequência",col = "turquoise")
+```
+
+
+
+
 
 
