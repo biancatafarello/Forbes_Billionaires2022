@@ -29,7 +29,7 @@ proporcao_herdeiros <- nrow(herdeiros)/nrow(lista_forbes)
 #gráfico selfmade
 library(ggplot2)
 slcs1 <- c(proporcao_selfmade,proporcao_herdeiros)
-ppt1<- round(100*slcs1/sum(slcs1), 1)
+ppt1<- paste(c(round(100*slcs1/sum(slcs1),1)),"%",sep = "")
 g1 <- pie(x = slcs1, labels = ppt1, main="Selfmade x Herdeiros",col = rainbow(length(slcs1)))
 legend("topright",c("Selfmade","Herdeiro"),cex = 0.8,fill = rainbow(length(slcs1)))
 ``` 
@@ -40,9 +40,10 @@ mulheres <- lista_forbes %>% filter(gender == "F")
 p_ht <- nrow(homens)/nrow(lista_forbes)
 p_mt <- nrow(mulheres)/nrow(lista_forbes)
 slcs2 <- c(p_ht,p_mt)
-ppt2<- round(100*slcs2/sum(slcs2), 1)
+ppt2<- paste(c(round(100*slcs2/sum(slcs2),1)),"%",sep = "")
 g2 <- pie(x = slcs2, labels = ppt2, main="Homens bilionários x Mulheres bilionárias",col = rainbow(length(slcs2)))
 legend("topright",c("Homens","Mulheres"),cex = 0.8,fill = rainbow(length(slcs2)))
+
 ``` 
 
 ```{r}
@@ -51,7 +52,7 @@ m_herdeiras <- herdeiros %>% filter(gender == "F")
 proporcao_hh <- nrow(h_herdeiros)/nrow(herdeiros)
 proporcao_mh <- nrow(m_herdeiras)/nrow(herdeiros)
 slcs3 <- c(proporcao_hh,proporcao_mh)
-ppt3<- round(100*slcs3/sum(slcs3), 1)
+ppt3<- paste(c(round(100*slcs3/sum(slcs3),1)),"%",sep = "")
 g3 <- pie(x = slcs3, labels = ppt3, main="Homens herdeiros x Mulheres herdeiras",col = rainbow(length(slcs3)))
 legend("topright",c("Homens","Mulheres"),cex = 0.8,fill = rainbow(length(slcs3)))
 ```
@@ -62,7 +63,7 @@ m_selfmade <- selfmade %>% filter(gender == "F")
 proporcao_hs <- nrow(h_selfmade)/nrow(selfmade)
 proporcao_ms <- nrow(m_selfmade)/nrow(selfmade)
 slcs4 <- c(proporcao_hs,proporcao_ms)
-ppt4<- round(100*slcs4/sum(slcs4), 1)
+ppt4<- paste(c(round(100*slcs4/sum(slcs4),1)),"%",sep = "")
 g4 <- pie(x = slcs4, labels = ppt4, main="Homens Selfmade x Mulheres Selfmade",col = rainbow(length(slcs4)))
 legend("topright",c("Homens","Mulheres"),cex = 0.8,fill = rainbow(length(slcs4)))
 
@@ -74,9 +75,54 @@ media_h <- homens$age %>% mean(na.rm=TRUE)
 media_m <- mulheres$age %>% mean(na.rm=TRUE)
 media_hr <- herdeiros$age %>% mean(na.rm=TRUE)
 media_sm <- selfmade$age %>% mean(na.rm=TRUE)
-medias <- c(media_idade,media_h,media_m,media_hr,media_sm)
+tabela_idade <- c(media_idade,media_h,media_m,media_hr,media_sm)
 hist(x = lista_forbes$age, breaks = 20,main = "Qual é a idade dos  bilionários?",xlab = "Idade",ylab = "Frequência",col = "turquoise")
+tabela_idade <- tabela_idade %>% as_tibble()
+tabela_idade <- cbind(tabela_idade,c("Geral"," Homens","Mulheres","Herdeiros","Selfmade"))
+colnames(tabela_idade)[1]<- "Média Idade"
+colnames(tabela_idade)[2]<- "Grupo analisado"
+``` 
+
+```{r}
+tabela <- table(lista_forbes$country)
+tabela <- tabela %>% as.data.frame()
+tabela <- tabela[rev(order(tabela$Freq)),]
+top10 <- c(tabela[1:10,])
+top10 <- 100*top10$Freq/sum(tabela$Freq)
+resto <- tabela[11:74,]
+resto <- sum(100*resto$Freq / sum(tabela$Freq))
+top10 <- c(top10,resto)
+top10_etiquetas <- paste(c(round(top10,1)),"%",sep = "")
+g_paises <- pie(x = top10, labels =    c(top10_etiquetas[1:5],">2%","-","-","-","-",top10_etiquetas[11]),main="Qual país tem mais  bilionários?",col = rainbow(length(top10)))
+legend("topright",c("Estados Unidos","China","India","Alemanha","Reino Unido","Suiça","Hong Kong","Russia","Brasil","Itália","Outros Países"),cex = 0.8,fill = rainbow(length(top10_etiquetas)))
+
+tabela_1 <- table(selfmade$country)
+tabela_1 <- tabela_1 %>% as.data.frame()
+tabela_1 <- tabela_1[rev(order(tabela_1$Freq)),]
+top10_1 <- c(tabela_1[1:10,])
+top10_1 <- 100*top10_1$Freq/sum(tabela_1$Freq)
+resto_1 <- tabela_1[11:65,]
+resto_1 <- sum(100*resto_1$Freq / sum(tabela_1$Freq))
+top10 <- c(top10,resto_1)
+top10_etiquetas <- paste(c(round(top10,1)),"%",sep = "")
+g_paises <- pie(x = top10, labels =    c(top10_etiquetas[1:5],">2%","-","-","-","-",top10_etiquetas[11]),main="Qual país é mais fácil ficar bilionário?",col = rainbow(length(top10)))
+legend("topright",c("China","Estados Unidos","India","Russia","Reino Unido","Hong Kong","Suiça","Alemanha","Canada","Australia","Outros Países"),cex = 0.8,fill = rainbow(length(top10_etiquetas)))
+
+
+tabela_2 <- subset(lista_forbes, select = c(country,finalWorth,rank))
+tabela_2 <- tabela_2[1:200,]
+tabela_2 <- table(tabela_2$country)
+tabela_2 <- tabela_2 %>% as.data.frame()
+tabela_2 <- tabela_2[rev(order(tabela_2$Freq)),]
+colnames(tabela_2)[1]<- "País"
+colnames(tabela_2)[2]<- "Frequência no TOP 200 Faturamentos"
+
 ```
+
+
+
+
+
 
 
 
