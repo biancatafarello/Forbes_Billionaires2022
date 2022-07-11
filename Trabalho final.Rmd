@@ -154,6 +154,15 @@ colnames(tabela_2)[2]<- "Frequência no TOP 200 Faturamentos"
 
 
 
+```{r}
+#areas com maior concentração de renda
+areas_fortuna <- lista_forbes %>% select(category, finalWorth) 
+areas <- areas_fortuna %>% arrange(-finalWorth)
+areas2 <- areas %>% group_by(category,) %>%
+  summarise(areas_Networth = sum(finalWorth),
+            .groups = 'drop')
+areas_concen <- areas2 %>% arrange(-areas_Networth)
+```
 
 
 
