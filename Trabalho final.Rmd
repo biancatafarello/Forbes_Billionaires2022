@@ -27,31 +27,31 @@ A apresentação feita será baseada na análise do conjunto de dados "Bilionár
 O objetivo da escolha deste banco de dados é inspecionar quais fatores possuem relevância na jornada para tornar-se um bilionário. Originalmente, o conjunto escolhido possuía 22 variáveis, porém a fim de extrair nossos resultados de interesse, fizemos uma seleção de variáveis  e mantivemos apenas as características relevantes. Dessa forma, a análise será conduzida através do estudo das variáveis: idade, gênero, país de origem, área de atuação e selfmade.
 
 ##Perguntas de interesse:
-O país de origem do indivíduo mostra-se um fator relevante? 
+###1) O país de origem do indivíduo mostra-se um fator relevante? 
 
-O gênero do indivíduo é um fator determinante quando se trata de trilhar uma carreira bilionária?
+###2) O gênero do indivíduo é um fator determinante quando se trata de trilhar uma carreira bilionária?
 	
-A área de atuação está diretamente relacionada a obtenção de riquezas?
+###3) A área de atuação está diretamente relacionada a obtenção de riquezas?
 
-Há alguma correlação entre idade mais avançada e a dimensão da fortuna?
+###4) Há alguma correlação entre idade mais avançada e a dimensão da fortuna?
 
 ##Descrição das variáveis de interesse:
-###1) Age: Idade
+###Age: Idade
 	- Quantitativa contínua, numérico
 
-###2)Finalworth: Fortuna
+###Finalworth: Fortuna
 	- Quantitativa contínua, numérico 
 
-###3)Category: Área de atuação
+###Category: Área de atuação
 	- Qualitativa nominal, caractere
 
-###4)Country: País de origem 
+###Country: País de origem 
 	- Qualitativa nominal, caractere
 
-###5)Self made: Herdeiro ou não
+###Self made: Herdeiro ou não
 	- Qualitativa nominal, caractere
 
-###6)Gender: Gênero
+###Gender: Gênero
 	- Qualitativa nominal, caractere
 
 ```{r}
