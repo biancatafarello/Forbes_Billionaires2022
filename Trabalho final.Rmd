@@ -29,7 +29,7 @@ O objetivo da escolha deste banco de dados é inspecionar quais fatores possuem 
 ##Perguntas de interesse:
 ###1) O gênero do indivíduo é um fator determinante quando se trata de trilhar uma carreira bilionária?
 
-###2) Há alguma correlação entre idade mais avançada e a dimensão da fortuna?
+###2) Há alguma correlação entre idade e a variável selfmade?
 	
 ###3) A área de atuação está diretamente relacionada a obtenção de riquezas?
 
