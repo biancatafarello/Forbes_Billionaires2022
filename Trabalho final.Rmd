@@ -9,11 +9,17 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r}
+#Carregando pacotes
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r}
 #Limpeza dos dados
 setwd("../archive/")
 lista_forbes <- read.csv("forbes_2022_billionaires.csv")
 lista_forbes <- subset(lista_forbes, select = c(rank,personName,age,finalWorth,category,country,selfMade,gender))
-library(dplyr)
 lista_forbes <- as_tibble(lista_forbes) 
 ```
 #Introdução
@@ -27,7 +33,6 @@ selfmade <- lista_forbes %>% filter(selfMade == "True")
 proporcao_selfmade <- nrow(selfmade)/nrow(lista_forbes)
 proporcao_herdeiros <- nrow(herdeiros)/nrow(lista_forbes)
 #gráfico selfmade
-library(ggplot2)
 slcs1 <- c(proporcao_selfmade,proporcao_herdeiros)
 ppt1<- paste(c(round(100*slcs1/sum(slcs1),1)),"%",sep = "")
 g1 <- pie(x = slcs1, labels = ppt1, main="Selfmade x Herdeiros",col = rainbow(length(slcs1)))
