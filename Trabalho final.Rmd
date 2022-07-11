@@ -171,7 +171,7 @@ areas_concen <- areas2 %>% arrange(-areas_Networth)
 Observando os quatro primeiros gráficos, relacionados à variável gênero, é possível constatar que as mulheres representam as menores parcelas em todos, porém a discrepância fica ainda maior, no gráfico "Homens selfmade X Mulheres selfmade", quando se trata de traçar uma carreira bilionária. Com isso, concluímos que o gênero é sim um fator determinante.
 
 ###2)
-Calculadas as médias de idade dos bilionários herdeiros e selfmade verificamos essa sendo menor entre os bilionários selfmade, ou seja, concluímos que a relação intuitiva de que a média de idade dos herdeiros seria maior é errônea.
+Calculadas as médias de idade dos bilionários herdeiros e selfmade verificamos essa sendo menor entre os bilionários selfmade, ou seja, concluímos que a relação intuitiva de que a média de idade dos herdeiros seria menor é errônea.
 
 
 
