@@ -162,6 +162,10 @@ areas2 <- areas %>% group_by(category,) %>%
   summarise(areas_Networth = sum(finalWorth),
             .groups = 'drop')
 areas_concen <- areas2 %>% arrange(-areas_Networth)
+
+#areas com mais nomes listados 
+n_listados <- areas_fortuna %>% count(category)
+n_listados <- n_listados %>% arrange(-n)
 ```
 
 
