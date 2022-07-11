@@ -29,7 +29,7 @@ O objetivo da escolha deste banco de dados é inspecionar quais fatores possuem 
 ##Perguntas de interesse:
 ###1) O gênero do indivíduo é um fator determinante quando se trata de trilhar uma carreira bilionária?
 
-###2) Há alguma correlação entre idade e a variável selfmade?
+###2) Há alguma correlação entre a idade mais avançada e os selfmade?
 	
 ###3) A área de atuação está diretamente relacionada a obtenção de riquezas?
 
@@ -165,6 +165,13 @@ areas_concen <- areas2 %>% arrange(-areas_Networth)
 ```
 
 
+#Conclusões finais:
+
+###1)
+Observando os quatro primeiros gráficos, relacionados à variável gênero, é possível constatar que as mulheres representam as menores parcelas em todos, porém a discrepância fica ainda maior, no gráfico "Homens selfmade X Mulheres selfmade", quando se trata de traçar uma carreira bilionária. Com isso, concluímos que o gênero é sim um fator determinante.
+
+###2)
+Calculadas as médias de idade dos bilionários herdeiros e selfmade verificamos essa sendo menor entre os bilionários selfmade, ou seja, concluímos que a relação intuitiva de que a média de idade dos herdeiros seria maior é errônea.
 
 
 
