@@ -177,6 +177,10 @@ Observando os quatro primeiros gráficos, relacionados à variável gênero, é 
 ###2)
 Calculadas as médias de idade dos bilionários herdeiros e selfmade verificamos essa sendo menor entre os bilionários selfmade, ou seja, concluímos que a relação intuitiva de que a média de idade dos herdeiros seria menor é errônea.
 
+###3) De acordo com os nomes listados, dos 10 maiores bilionários podemos observar que 5 são da área da tecnologia, ou seja, um ramo bastante promissor quando se trata de grandes foturnas, porém entre os 200 ela não é maioria entre as categorias, perdendo para finanças e investimento (que contém foturnas menores, porém mais pessoas bilionárias). Concluimos que o motivo de area mais propensa a ter bilionários ser a de tecnologia pois essa categoria esteve em acensão nas ultimas decadas.
+
+###4)Observando o gráfico dos países com maior índice de bilionários podemos perceber que as origens são majoritariamente em paises desenvolvidos como EUA, China e diversos países da Europa onde existem diversos  fatores como educação de qualidade que contém certa influência na trajetória dos grandes Bilionários.
+
 
 
 
